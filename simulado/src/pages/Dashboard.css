@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    background-color: #1e3a8a; /* Azul escuro elegante */
+    width: 90vw;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px 30px;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+.header h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+.header nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.header nav a:hover {
+    color: #93c5fd; /* Azul claro ao passar o mouse */
+}

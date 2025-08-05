@@ -1,28 +1,38 @@
 import { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { useNavigate } from 'react-router-dom';
+
 import './login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+  const [carregando, setCarregando] = useState(false);
   const navigate = useNavigate();
 
   async function handleLogin(e) {
     e.preventDefault();
     setErro('');
+    setCarregando(true);
 
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password: senha,
-    });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password: senha,
+      });
 
-    if (error) {
-      console.log('Erro:', error.message);
-      setErro('Email ou senha incorretos.');
-    } else {
-      navigate('/dashboard'); // redireciona para a tela principal
+      if (error) {
+        console.log('Erro:', error.message);
+        setErro('Email ou senha incorretos.');
+      } else {
+        navigate('/dashboard'); // redireciona após login
+      }
+    } catch (error) {
+      console.error('Erro inesperado:', error);
+      setErro('Ocorreu um erro inesperado. Tente novamente.');
+    } finally {
+      setCarregando(false);
     }
   }
 
@@ -36,6 +46,7 @@ function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          disabled={carregando}
         />
         <input
           type="password"
@@ -43,8 +54,15 @@ function Login() {
           value={senha}
           onChange={(e) => setSenha(e.target.value)}
           required
+          disabled={carregando}
         />
-        <button type="submit">Entrar</button>
+        <button 
+          className="enviar" 
+          type="submit" 
+          disabled={carregando}
+        >
+          {carregando ? 'Entrando...' : 'Entrar'}
+        </button>
         {erro && <p className="erro">{erro}</p>}
       </form>
     </div>
