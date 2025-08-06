@@ -1,16 +1,40 @@
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .header {
-    display: flex;
-    background-color: #1e3a8a; /* Azul escuro elegante */
-    width: 90vw;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 15px 30px;
-    border-radius: 10px;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  background-color: #1e3a8a; /* Azul escuro elegante */
+  position: fixed; /* Mudança para fixed para ficar no topo da tela */
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 15px 30px;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.content-area {
+  margin-top: 80px; /* Espaço para o header fixo */
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 .header h1 {
     font-size: 1.8rem;
@@ -25,4 +49,64 @@
 }
 .header nav a:hover {
     color: #93c5fd; /* Azul claro ao passar o mouse */
+}
+
+.atividades, .turmas{
+color: black;
+display: flex;
+text-align: center;
+justify-content: center;
+justify-self: center;
+align-self: center;}
+
+.dTur {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px auto;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.dTur:hover {
+  transform: scale(1.02);
+}
+
+.dTur p {
+  font-size: 18px;
+  width: 300px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.dTur button {
+  margin-right: 10px;
+  padding:16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dTur button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.dTur button:first-child:hover {
+  background-color: #0056b3;
+}
+
+.dTur button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.dTur button:last-child:hover {
+  background-color: #a71d2a;
 }
